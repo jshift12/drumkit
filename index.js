@@ -1,6 +1,12 @@
 
-document.addEventListener("keypress", function(event) {
+// BY KEYPRESS
 
+document.addEventListener("keypress", function(event) {
+  makeSound(event.key);
+  buttonAnimation(event.key);
+});
+
+function makeSound(key) {
   switch (event.key) {
     case "w":
       var tom1 = new Audio('sounds/tom-1.mp3');
@@ -34,8 +40,9 @@ document.addEventListener("keypress", function(event) {
     default:
 
   }
-});
+}
 
+ // By Click
 
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 
@@ -78,7 +85,17 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
       default:
 
     }
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
 
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
